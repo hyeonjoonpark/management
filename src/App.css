@@ -13,6 +13,16 @@
   }
 }
 
+.logo {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.logo img {
+  width: 180px;
+  height: auto;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -35,4 +45,9 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+table tbody tr img {
+  width: 120px;
+  height: 120px;
 }

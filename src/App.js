@@ -1,3 +1,6 @@
+/* eslint-disable  */
+
+// using name export
 import React, { Component } from 'react';
 import Customer from './components/Customer';
 import './App.css';
@@ -6,63 +9,63 @@ import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell';
+import data from './data/data.json';
+import { styled } from '@emotion/styled';
+import Paper from '@material-ui/core/Paper';
 
-const customers = [
-{
-  'id' : 1,
-  'image' : './image/hyeonjoon.jpeg',
-  'name' : '박현준',
-  'birthday' : '2006.03.27',
-  'gender' : '남자',
-  'role' : '웹관리자'
-},
+const schoolData = data;
 
-{
-  'id' : 2,
-  'image' : './image/hyeonjae.jpeg',
-  'name' : '장현제',
-  'birthday' : '2001.11.09',
-  'gender' : '남자',
-  'role' : '선생님'
-
-},
-
-{
-  'id' : 3,
-  'image' : './image/ujin.jpeg',
-  'name' : '김우진',
-  'birthday' : 'NULL',
-  'gender' : '남자',
-  'role' : '선생님'
-}
-]
+const styles = theme => ({
+  root: {
+    width: '100%',
+    marginTop: theme.spacing.unit * 3,
+    overflowX : 'auto'
+  },
+  table: {
+    minWidth :  1080
+  }
+})
 
 class App extends Component {
   render() {
+    const { classes } = this.props;
     return (
-      <div>
-        <div className="logo"><img src="./image/logo.png"/></div>
-        <div className="login">
-          <button className="loginBtn"></button>
+      <div className="App">
+        <div className="navBar">
+          <div className="logo"><img src="./image/bsm.png"/></div>
+          <button className="loginBtn">로그인</button>
         </div>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>번호</TableCell>
-              <TableCell>프로필사진</TableCell>
-              <TableCell>이름</TableCell>
-              <TableCell>생년월일</TableCell>
-              <TableCell>성별</TableCell>
-              <TableCell>역할</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {customers.map(c => {return (<Customer key={c.id} id={c.id} image={c.image} name={c.name} birthday={c.birthday} gender={c.gender} role={c.role}/>)})}
-          </TableBody>
-        </Table>
+
+        <div className="title">
+        <h2>학생종합관리</h2>
+        <input className="search" type="text" placeholder='검색어를 입력해주세요'/>
+        </div>
+        
+        <Paper className={classes.root}>
+          <Table className={classes.table}>
+            <TableHead>
+              <TableRow>
+                <TableCell>ID</TableCell>
+                <TableCell>이름</TableCell>
+                <TableCell>입학년도</TableCell>
+                <TableCell>성별</TableCell>
+                <TableCell>역할</TableCell>
+                <TableCell>…</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {schoolData.map(c => {
+                  return (
+                    <Customer key={c.user_id} user_id={c.user_id} user_name={c.user_name} enter_year={c.enter_year} gender={c.gender} role={c.role}/>
+                  )
+                }
+              )}
+            </TableBody>
+          </Table>
+        </Paper>
       </div>
     );
   }
 }
 
-export default App;
+export default styled(styles) (App);

@@ -1,0 +1,9 @@
+[
+    {
+        "user_id" : 1,
+        "user_name" : "박현준",
+        "enter_year" : 2006,
+        "gender" : "남자",
+        "role" : "학생"
+    }
+]
